@@ -1,0 +1,15 @@
+{
+  "name": "Kelly Translate",
+  "short_name": "Kelly Translate",
+  "description": "Walkie-talkie English and Spanish translator",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#08101c",
+  "theme_color": "#08101c",
+  "lang": "en",
+  "categories": [
+    "utilities",
+    "productivity"
+  ]
+}

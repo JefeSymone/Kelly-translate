@@ -1,361 +1,238 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#101827">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Kelly Translate">
-  <link rel="manifest" href="manifest.webmanifest">
-  <title>Kelly Translate</title>
-  <style>
-    :root{
-      --bg:#0b1220;--panel:#111b2d;--panel2:#162238;--text:#f7f9fc;
-      --muted:#9dadc4;--accent:#5aa7ff;--accent2:#8bc2ff;--danger:#ff8d8d;
-      --ok:#7dd7a7;--border:rgba(255,255,255,.09);--shadow:0 18px 50px rgba(0,0,0,.28)
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#08101c,#0d1627 55%,#0a1220);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
-    body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-    button,textarea,input{font:inherit}
-    button{cursor:pointer}
-    .app{max-width:760px;margin:0 auto;padding:18px 16px 34px}
-    header{text-align:center;padding:18px 0 12px}
-    .logo{width:66px;height:66px;border-radius:22px;margin:0 auto 12px;display:grid;place-items:center;
-      background:linear-gradient(145deg,var(--accent),#7e7cff);box-shadow:var(--shadow);font-size:31px}
-    h1{margin:0;font-size:28px;letter-spacing:-.5px}
-    .sub{color:var(--muted);margin:7px auto 0;max-width:520px;line-height:1.45}
-    .statusbar{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:15px 0}
-    .badge{font-size:12px;padding:7px 10px;border-radius:999px;background:var(--panel2);color:var(--muted);border:1px solid var(--border)}
-    .badge.online{color:var(--ok)} .badge.offline{color:#ffd27a}
-    .switcher{display:grid;grid-template-columns:1fr 48px 1fr;gap:10px;align-items:center;margin:14px 0}
-    .lang{border:0;border-radius:16px;background:var(--panel2);color:var(--text);padding:14px 10px;font-weight:750}
-    .lang.active{background:var(--accent);color:#05101f}
-    .swap{border:1px solid var(--border);background:var(--panel);color:var(--text);width:48px;height:48px;border-radius:50%;font-size:21px}
-    .card{background:rgba(17,27,45,.93);border:1px solid var(--border);border-radius:24px;padding:16px;box-shadow:var(--shadow);margin:14px 0}
-    .labelrow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-    .label{font-size:13px;font-weight:800;color:var(--muted);letter-spacing:.25px}
-    textarea{width:100%;min-height:145px;resize:vertical;border:0;outline:0;border-radius:16px;padding:14px;background:#0c1525;color:var(--text);font-size:21px;line-height:1.35}
-    textarea::placeholder{color:#61728c}
-    .translated{min-height:145px;border-radius:16px;padding:14px;background:#0c1525;font-size:23px;line-height:1.4;white-space:pre-wrap;word-break:break-word}
-    .translated.empty{color:#61728c}
-    .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
-    .btn{border:1px solid var(--border);border-radius:14px;padding:11px 14px;background:var(--panel2);color:var(--text);font-weight:700}
-    .btn.primary{background:var(--accent);border-color:transparent;color:#06101d}
-    .btn.danger{color:#ffc1c1}
-    .btn:disabled{opacity:.45;cursor:not-allowed}
-    .big{width:100%;font-size:18px;padding:15px}
-    .notice{border-radius:17px;padding:13px 14px;margin:12px 0;background:rgba(90,167,255,.1);border:1px solid rgba(90,167,255,.22);color:#cfe6ff;font-size:14px;line-height:1.5}
-    .error{background:rgba(255,100,100,.11);border-color:rgba(255,100,100,.25);color:#ffd1d1}
-    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
-    .tab{border:0;border-radius:14px;padding:11px;background:var(--panel2);color:var(--muted);font-weight:800}
-    .tab.active{background:#23334f;color:var(--text)}
-    .list{display:grid;gap:9px;margin-top:12px}
-    .item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:13px;border-radius:16px;background:var(--panel2);border:1px solid var(--border)}
-    .item small{display:block;color:var(--muted);margin-bottom:5px}
-    .item p{margin:0 0 6px;line-height:1.35}
-    .iconbtn{border:0;background:transparent;color:var(--text);font-size:20px;padding:6px}
-    footer{text-align:center;color:var(--muted);font-size:12px;line-height:1.45;margin-top:24px;padding:0 8px}
-    @media (max-width:520px){.app{padding-left:12px;padding-right:12px}.card{border-radius:20px}.actions .btn{flex:1}.actions .btn.primary{flex-basis:100%}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08101c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kelly Translate">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Kelly Translate</title>
+<style>
+:root{
+  --bg:#08101c;--panel:#101b2e;--text:#f7f9fc;--muted:#9daec6;
+  --blue:#5aa7ff;--pink:#ff77ad;--green:#7bdba7;--border:rgba(255,255,255,.09);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#07101c,#0c1627);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
+body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+button{font:inherit}
+.app{min-height:100vh;max-width:720px;margin:0 auto;padding:16px 14px 24px;display:flex;flex-direction:column}
+header{text-align:center;padding:10px 0 14px}
+.logo{font-size:26px}
+h1{margin:4px 0 0;font-size:26px}
+.sub{color:var(--muted);margin-top:4px;font-size:14px}
+.status{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.badge{font-size:12px;padding:6px 9px;border-radius:999px;background:#142239;color:var(--muted);border:1px solid var(--border)}
+.badge.online{color:var(--green)}
+.walkie{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-items:stretch}
+.talk{
+  border:1px solid var(--border);border-radius:28px;color:var(--text);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:360px;padding:20px 12px;box-shadow:0 18px 50px rgba(0,0,0,.24);
+  transition:.15s transform,.15s box-shadow,.15s border-color;
+}
+.talk:active{transform:scale(.985)}
+.talk.you{background:linear-gradient(180deg,rgba(90,167,255,.26),rgba(23,44,72,.94))}
+.talk.kelly{background:linear-gradient(180deg,rgba(255,119,173,.24),rgba(57,31,55,.94))}
+.flag{font-size:52px;margin-bottom:12px}
+.name{font-size:30px;font-weight:900}
+.lang{font-size:15px;color:var(--muted);margin-top:4px}
+.mic{font-size:54px;margin:22px 0 8px}
+.action{font-size:17px;font-weight:800}
+.talk.ready{border-color:rgba(255,255,255,.28)}
+.talk.listening{border-color:white;box-shadow:0 0 0 3px rgba(255,255,255,.15),0 18px 50px rgba(0,0,0,.28);animation:pulse 1.1s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(.985)}}
+.result{margin-top:14px;background:rgba(16,27,46,.95);border:1px solid var(--border);border-radius:22px;padding:15px}
+.resultTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.label{font-size:12px;color:var(--muted);font-weight:900}
+.heard{font-size:18px;line-height:1.35;margin-top:9px}
+.translation{font-size:25px;line-height:1.35;font-weight:900;margin-top:7px}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{border:1px solid var(--border);border-radius:13px;padding:10px 12px;background:#16243a;color:var(--text);font-weight:750}
+.btn:disabled{opacity:.45}
+.notice{margin-top:12px;padding:11px 12px;border-radius:14px;background:rgba(90,167,255,.09);border:1px solid rgba(90,167,255,.18);font-size:13px;color:#cee5ff;line-height:1.4}
+.notice.error{background:rgba(255,100,100,.11);border-color:rgba(255,100,100,.24);color:#ffd1d1}
+.smallrow{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.smallbtn{border:1px solid var(--border);background:#132036;color:var(--muted);padding:9px 11px;border-radius:12px;font-weight:700}
+@media(max-width:560px){
+  .app{padding-left:10px;padding-right:10px}
+  .walkie{gap:9px}
+  .talk{min-height:330px;border-radius:24px;padding:14px 8px}
+  .flag{font-size:44px}.name{font-size:25px}.mic{font-size:47px}
+}
+</style>
 </head>
 <body>
 <div class="app">
-  <header>
-    <div class="logo">💬</div>
-    <h1>Kelly Translate</h1>
-    <div class="sub">Fast English ↔ Spanish conversation translation for you and Kelly.</div>
-    <div class="statusbar">
-      <span id="netBadge" class="badge">Checking connection…</span>
-      <span class="badge">English ↔ Español</span>
-    </div>
-  </header>
+<header>
+  <div class="logo">💬</div>
+  <h1>Kelly Translate</h1>
+  <div class="sub">Tap your side. Speak. Hear the translation.</div>
+  <div class="status"><span id="netBadge" class="badge">Checking…</span><span class="badge">Walkie-Talkie Mode</span></div>
+</header>
 
-  <div class="switcher">
-    <button id="englishBtn" class="lang active">English</button>
-    <button id="swapTop" class="swap" aria-label="Swap languages">⇄</button>
-    <button id="spanishBtn" class="lang">Español</button>
+<div class="walkie">
+  <button id="youBtn" class="talk you ready">
+    <div class="flag">🇺🇸</div>
+    <div class="name">You</div>
+    <div class="lang">English</div>
+    <div class="mic">🎤</div>
+    <div class="action">Tap & Speak</div>
+  </button>
+
+  <button id="kellyBtn" class="talk kelly">
+    <div class="flag">🇨🇴</div>
+    <div class="name">Kelly</div>
+    <div class="lang">Español</div>
+    <div class="mic">🎤</div>
+    <div class="action">Toca y Habla</div>
+  </button>
+</div>
+
+<div class="result">
+  <div class="resultTop">
+    <div id="turnLabel" class="label">READY FOR YOU</div>
+    <button id="stopBtn" class="btn" disabled>■ Stop</button>
   </div>
-
-  <section class="card">
-    <div class="labelrow">
-      <div id="sourceLabel" class="label">YOU — ENGLISH</div>
-      <button id="micBtn" class="btn">🎤 Speak</button>
-    </div>
-    <textarea id="source" maxlength="500" placeholder="Type or speak in English…"></textarea>
-    <div class="actions">
-      <button id="clearBtn" class="btn danger">Clear</button>
-      <button id="pasteBtn" class="btn">Paste</button>
-      <button id="translateBtn" class="btn primary">Translate</button>
-    </div>
-  </section>
-
-  <button id="swapMiddle" class="btn big">⇅ Swap conversation direction</button>
-
-  <section class="card">
-    <div class="labelrow">
-      <div id="targetLabel" class="label">KELLY — ESPAÑOL</div>
-      <button id="speakBtn" class="btn" disabled>🔊 Listen</button>
-    </div>
-    <div id="output" class="translated empty">Translation appears here</div>
-    <div class="actions">
-      <button id="copyBtn" class="btn" disabled>Copy</button>
-      <button id="saveBtn" class="btn" disabled>☆ Save phrase</button>
-    </div>
-  </section>
-
-  <div id="message" class="notice" hidden></div>
-
-  <div class="tabs">
-    <button class="tab active" data-tab="history">Recent</button>
-    <button class="tab" data-tab="saved">Saved</button>
+  <div id="heard" class="heard">Tap your side and start speaking.</div>
+  <div id="translation" class="translation"></div>
+  <div class="controls">
+    <button id="repeatBtn" class="btn" disabled>🔊 Repeat</button>
+    <button id="copyBtn" class="btn" disabled>Copy</button>
+    <button id="clearBtn" class="btn">Clear</button>
   </div>
-  <div id="list" class="list"></div>
+</div>
 
-  <div class="notice">
-    <strong>Home Screen:</strong> In Safari, tap <strong>Share</strong> → <strong>Add to Home Screen</strong>. The app shell is cached for offline opening. Translation itself uses an internet translation service in this web version.
-  </div>
+<div id="message" class="notice">After each translation, the other person’s side is highlighted for the next turn.</div>
 
-  <footer>
-    Kelly Translate v1 Web • Translation powered through MyMemory. Voice input depends on iPhone/Safari speech-recognition availability. Saved phrases and recent translations stay on this device.
-  </footer>
+<div class="smallrow">
+  <button id="historyBtn" class="smallbtn">Conversation History</button>
+  <button id="autoSpeakBtn" class="smallbtn">Auto Speak: ON</button>
+</div>
+
+<div id="historyPanel" class="result" style="display:none">
+  <div class="label">RECENT CONVERSATION</div>
+  <div id="history"></div>
+</div>
+
 </div>
 
 <script>
 (() => {
-  const $ = id => document.getElementById(id);
-  const source = $('source'), output = $('output'), translateBtn = $('translateBtn');
-  const micBtn = $('micBtn'), speakBtn = $('speakBtn'), copyBtn = $('copyBtn'), saveBtn = $('saveBtn');
-  const message = $('message'), list = $('list'), netBadge = $('netBadge');
-  let direction = 'en-es';
-  let currentTranslation = '';
-  let recognizing = false;
-  let recognition = null;
-  let currentTab = 'history';
+  const $=id=>document.getElementById(id);
+  let recognition=null, recognizing=false, active=null;
+  let lastTranslation='', lastLocale='es-CO', autoSpeak=true;
+  let history=JSON.parse(localStorage.getItem('kt_walkie_history')||'[]');
 
-  const escapeHTML = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const info = who => who==='you'
+    ? {inLang:'en-US',pair:'en|es',outLang:'es-CO',next:'kelly',label:'LISTENING TO YOU'}
+    : {inLang:'es-CO',pair:'es|en',outLang:'en-US',next:'you',label:'ESCUCHANDO A KELLY'};
 
-  function showMessage(text, error=false) {
-    message.hidden = !text;
-    message.textContent = text || '';
-    message.className = 'notice' + (error ? ' error' : '');
+  function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+  function net(){const on=navigator.onLine,b=$('netBadge');b.textContent=on?'● Online':'● Offline';b.className='badge '+(on?'online':'')}
+  function setReady(who){$('youBtn').classList.toggle('ready',who==='you');$('kellyBtn').classList.toggle('ready',who==='kelly')}
+  function setListening(who,on){$('youBtn').classList.toggle('listening',on&&who==='you');$('kellyBtn').classList.toggle('listening',on&&who==='kelly');$('stopBtn').disabled=!on}
+  function msg(text,error=false){$('message').textContent=text;$('message').className='notice'+(error?' error':'')}
+
+  async function translateText(text,pair){
+    if(!navigator.onLine) throw new Error('You’re offline. New translations need internet.');
+    const r=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(pair)}`,{headers:{Accept:'application/json'}});
+    if(!r.ok) throw new Error('Translation service error.');
+    const d=await r.json();
+    if(!d?.responseData?.translatedText) throw new Error('No translation returned.');
+    return d.responseData.translatedText;
   }
 
-  function langInfo() {
-    return direction === 'en-es'
-      ? {source:'en', target:'es', pair:'en|es', speechIn:'en-US', speechOut:'es-CO', sourceName:'YOU — ENGLISH', targetName:'KELLY — ESPAÑOL', placeholder:'Type or speak in English…'}
-      : {source:'es', target:'en', pair:'es|en', speechIn:'es-CO', speechOut:'en-US', sourceName:'KELLY — ESPAÑOL', targetName:'YOU — ENGLISH', placeholder:'Escribe o habla en español…'};
-  }
-
-  function setDirection(next, swapText=false) {
-    if (next === direction && !swapText) return;
-    if (swapText && currentTranslation) {
-      const old = source.value;
-      source.value = currentTranslation;
-      currentTranslation = old;
-      renderOutput(currentTranslation);
-    } else {
-      currentTranslation = '';
-      renderOutput('');
-    }
-    direction = next;
-    const info = langInfo();
-    $('sourceLabel').textContent = info.sourceName;
-    $('targetLabel').textContent = info.targetName;
-    source.placeholder = info.placeholder;
-    $('englishBtn').classList.toggle('active', direction === 'en-es');
-    $('spanishBtn').classList.toggle('active', direction === 'es-en');
-    stopRecognition();
-    showMessage('');
-  }
-
-  function swapDirection() {
-    setDirection(direction === 'en-es' ? 'es-en' : 'en-es', true);
-  }
-
-  function renderOutput(text) {
-    currentTranslation = text || '';
-    output.textContent = text || 'Translation appears here';
-    output.classList.toggle('empty', !text);
-    speakBtn.disabled = !text;
-    copyBtn.disabled = !text;
-    saveBtn.disabled = !text;
-  }
-
-  async function translate() {
-    const text = source.value.trim();
-    if (!text) return showMessage('Type or speak a sentence first.', true);
-    if (!navigator.onLine) return showMessage('You’re offline. This web version needs internet for new translations. Saved phrases still work.', true);
-    if (new TextEncoder().encode(text).length > 500) return showMessage('Please shorten this message. The free translation service accepts up to 500 bytes at a time.', true);
-
-    translateBtn.disabled = true;
-    translateBtn.textContent = 'Translating…';
-    showMessage('');
-
-    try {
-      const info = langInfo();
-      const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(info.pair)}`;
-      const res = await fetch(url, {headers:{'Accept':'application/json'}});
-      if (!res.ok) throw new Error(`Translation service returned ${res.status}.`);
-      const data = await res.json();
-      const translated = data?.responseData?.translatedText;
-      if (!translated) throw new Error('No translation was returned.');
-      renderOutput(translated);
-      addHistory(text, translated, direction);
-    } catch (err) {
-      showMessage('Translation failed. Check your connection and try again. ' + (err?.message || ''), true);
-    } finally {
-      translateBtn.disabled = false;
-      translateBtn.textContent = 'Translate';
-    }
-  }
-
-  function speak(text, locale) {
-    if (!('speechSynthesis' in window)) return showMessage('Speech playback is not available on this browser.', true);
+  function speak(text,locale,cb){
+    if(!('speechSynthesis' in window)){cb?.();return}
     speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = locale;
-    u.rate = 0.92;
-    speechSynthesis.speak(u);
+    const u=new SpeechSynthesisUtterance(text);u.lang=locale;u.rate=.92;u.onend=()=>cb?.();u.onerror=()=>cb?.();speechSynthesis.speak(u)
   }
 
-  function initRecognition() {
-    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) {
-      micBtn.disabled = true;
-      micBtn.textContent = '🎤 Voice unavailable';
+  function initSpeech(){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){
+      $('youBtn').disabled=$('kellyBtn').disabled=true;
+      msg('Voice recognition is unavailable in this browser.',true);
       return;
     }
-    recognition = new SR();
-    recognition.interimResults = true;
-    recognition.continuous = false;
-    recognition.maxAlternatives = 1;
-    recognition.onresult = e => {
-      let txt = '';
-      for (let i=e.resultIndex;i<e.results.length;i++) txt += e.results[i][0].transcript;
-      source.value = txt;
+    recognition=new SR();recognition.interimResults=true;recognition.continuous=false;recognition.maxAlternatives=1;
+
+    recognition.onresult=e=>{
+      let text='',isFinal=false;
+      for(let i=e.resultIndex;i<e.results.length;i++){text+=e.results[i][0].transcript;if(e.results[i].isFinal)isFinal=true}
+      $('heard').textContent=text||'Listening…';
+      if(isFinal&&text.trim()) finish(text.trim());
     };
-    recognition.onerror = e => {
-      recognizing = false;
-      micBtn.textContent = '🎤 Speak';
-      showMessage('Voice input stopped: ' + e.error + '. You can still type your message.', true);
+
+    recognition.onerror=()=>{
+      setListening(active,false);recognizing=false;
+      msg('I couldn’t hear that clearly. Tap your side and try again.',true);
+      active=null;
     };
-    recognition.onend = () => {
-      recognizing = false;
-      micBtn.textContent = '🎤 Speak';
-    };
+    recognition.onend=()=>{recognizing=false;setListening(active,false)};
   }
 
-  function toggleRecognition() {
-    if (!recognition) return;
-    if (recognizing) return stopRecognition();
-    recognition.lang = langInfo().speechIn;
-    try {
-      recognition.start();
-      recognizing = true;
-      micBtn.textContent = '■ Stop';
-      showMessage('Listening…');
-    } catch(e) {
-      showMessage('Could not start voice input. Try again or type instead.', true);
-    }
+  function start(who){
+    if(!recognition)return;
+    if(recognizing)stop();
+    active=who;const i=info(who);
+    recognition.lang=i.inLang;
+    $('turnLabel').textContent=i.label;
+    $('heard').textContent=who==='you'?'Speak now…':'Habla ahora…';
+    $('translation').textContent='';
+    msg('Listening…');
+    try{recognition.start();recognizing=true;setListening(who,true);setReady(who)}catch{msg('Could not start the microphone. Tap again.',true)}
   }
 
-  function stopRecognition() {
-    if (recognition && recognizing) {
-      try { recognition.stop(); } catch(e) {}
-    }
-    recognizing = false;
-    micBtn.textContent = recognition ? '🎤 Speak' : '🎤 Voice unavailable';
+  function stop(){
+    if(recognition&&recognizing){try{recognition.stop()}catch{}}
+    recognizing=false;setListening(active,false);$('stopBtn').disabled=true
   }
 
-  function getStore(key) {
-    try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; }
+  async function finish(text){
+    if(!active)return;
+    const who=active,i=info(who);stop();
+    $('turnLabel').textContent='TRANSLATING…';
+    try{
+      const t=await translateText(text,i.pair);
+      lastTranslation=t;lastLocale=i.outLang;
+      $('heard').textContent=text;$('translation').textContent=t;
+      $('repeatBtn').disabled=false;$('copyBtn').disabled=false;
+      history.push({who,original:text,translated:t,at:Date.now()});history=history.slice(-40);localStorage.setItem('kt_walkie_history',JSON.stringify(history));renderHistory();
+      setReady(i.next);
+      const nextLabel=i.next==='kelly'?'KELLY’S TURN':'YOUR TURN';
+      if(autoSpeak)speak(t,i.outLang,()=>{$('turnLabel').textContent=nextLabel;msg(i.next==='kelly'?'Kelly, tap your side and speak.':'Tap your side and speak.')});
+      else{$('turnLabel').textContent=nextLabel;msg(i.next==='kelly'?'Kelly, tap your side and speak.':'Tap your side and speak.')}
+    }catch(e){msg(e.message||'Translation failed.',true);$('turnLabel').textContent='TRY AGAIN'}
+    finally{active=null}
   }
-  function setStore(key, val) {
-    try { localStorage.setItem(key, JSON.stringify(val.slice(0,40))); } catch {}
-  }
-  function addHistory(src, dst, dir) {
-    const items = getStore('kt_history');
-    items.unshift({src,dst,dir,at:Date.now()});
-    setStore('kt_history', items);
-    renderList();
-  }
-  function savePhrase() {
-    if (!currentTranslation) return;
-    const items = getStore('kt_saved');
-    const item = {src:source.value.trim(), dst:currentTranslation, dir:direction, at:Date.now()};
-    if (!items.some(x => x.src === item.src && x.dst === item.dst)) items.unshift(item);
-    setStore('kt_saved', items);
-    saveBtn.textContent = '★ Saved';
-    setTimeout(()=>saveBtn.textContent='☆ Save phrase',1000);
-    if (currentTab === 'saved') renderList();
-  }
-  function renderList() {
-    const items = getStore(currentTab === 'saved' ? 'kt_saved' : 'kt_history');
-    if (!items.length) {
-      list.innerHTML = `<div class="notice">No ${currentTab === 'saved' ? 'saved phrases' : 'recent translations'} yet.</div>`;
-      return;
-    }
-    list.innerHTML = items.slice(0,20).map((x,i) => `
-      <div class="item">
-        <div>
-          <small>${x.dir === 'en-es' ? 'English → Español' : 'Español → English'}</small>
-          <p>${escapeHTML(x.src)}</p>
-          <p><strong>${escapeHTML(x.dst)}</strong></p>
-        </div>
-        <button class="iconbtn" data-use="${i}" aria-label="Use phrase">↗</button>
+
+  function renderHistory(){
+    const box=$('history');
+    if(!history.length){box.innerHTML='<div style="color:#9daec6;margin-top:10px">No conversation yet.</div>';return}
+    box.innerHTML=history.slice().reverse().map(x=>`
+      <div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+        <div style="font-size:12px;color:#9daec6">${x.who==='you'?'You → Kelly':'Kelly → You'}</div>
+        <div style="margin-top:3px">${esc(x.original)}</div>
+        <div style="font-weight:800;margin-top:4px">${esc(x.translated)}</div>
       </div>`).join('');
-    list.querySelectorAll('[data-use]').forEach(btn => btn.onclick = () => {
-      const x = items[Number(btn.dataset.use)];
-      direction = x.dir;
-      setDirection(x.dir, false);
-      source.value = x.src;
-      renderOutput(x.dst);
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
   }
 
-  function updateNetwork() {
-    const on = navigator.onLine;
-    netBadge.textContent = on ? '● Online' : '● Offline';
-    netBadge.className = 'badge ' + (on ? 'online' : 'offline');
-  }
+  $('youBtn').onclick=()=>start('you');
+  $('kellyBtn').onclick=()=>start('kelly');
+  $('stopBtn').onclick=stop;
+  $('repeatBtn').onclick=()=>speak(lastTranslation,lastLocale);
+  $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(lastTranslation);msg('Translation copied.')}catch{msg('Press and hold the translation to copy it.',true)}};
+  $('clearBtn').onclick=()=>{$('heard').textContent='Tap your side and start speaking.';$('translation').textContent='';$('turnLabel').textContent='READY FOR YOU';$('repeatBtn').disabled=$('copyBtn').disabled=true;setReady('you');msg('Ready.')};
+  $('historyBtn').onclick=()=>{const p=$('historyPanel');p.style.display=p.style.display==='none'?'block':'none'};
+  $('autoSpeakBtn').onclick=()=>{autoSpeak=!autoSpeak;$('autoSpeakBtn').textContent='Auto Speak: '+(autoSpeak?'ON':'OFF')};
 
-  $('englishBtn').onclick = () => setDirection('en-es');
-  $('spanishBtn').onclick = () => setDirection('es-en');
-  $('swapTop').onclick = swapDirection;
-  $('swapMiddle').onclick = swapDirection;
-  translateBtn.onclick = translate;
-  micBtn.onclick = toggleRecognition;
-  speakBtn.onclick = () => speak(currentTranslation, langInfo().speechOut);
-  copyBtn.onclick = async () => {
-    try { await navigator.clipboard.writeText(currentTranslation); showMessage('Translation copied.'); }
-    catch { showMessage('Could not copy automatically. Press and hold the translation to copy it.', true); }
-  };
-  saveBtn.onclick = savePhrase;
-  $('clearBtn').onclick = () => { source.value=''; renderOutput(''); showMessage(''); source.focus(); };
-  $('pasteBtn').onclick = async () => {
-    try { source.value = await navigator.clipboard.readText(); }
-    catch { showMessage('Safari may require you to paste manually. Press and hold inside the text box, then tap Paste.', true); }
-  };
-  source.addEventListener('keydown', e => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') translate();
-  });
-  document.querySelectorAll('.tab').forEach(btn => btn.onclick = () => {
-    currentTab = btn.dataset.tab;
-    document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x === btn));
-    renderList();
-  });
-  window.addEventListener('online', updateNetwork);
-  window.addEventListener('offline', updateNetwork);
-
-  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-    navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  }
-  updateNetwork();
-  initRecognition();
-  renderList();
+  window.addEventListener('online',net);window.addEventListener('offline',net);
+  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  net();initSpeech();renderHistory();setReady('you');
 })();
 </script>
 </body>
