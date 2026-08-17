@@ -9,71 +9,278 @@
 <meta name="apple-mobile-web-app-title" content="Kelly Translate">
 <link rel="manifest" href="manifest.webmanifest">
 <title>Kelly Translate</title>
+
 <style>
 :root{
-  --bg:#08101c;--panel:#101b2e;--text:#f7f9fc;--muted:#9daec6;
-  --blue:#5aa7ff;--pink:#ff77ad;--green:#7bdba7;--border:rgba(255,255,255,.09);
+  --bg:#08101c;
+  --panel:#101b2e;
+  --text:#f7f9fc;
+  --muted:#9daec6;
+  --blue:#5aa7ff;
+  --pink:#ff77ad;
+  --green:#7bdba7;
+  --border:rgba(255,255,255,.09);
 }
+
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#07101c,#0c1627);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif}
-body{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-button{font:inherit}
-.app{min-height:100vh;max-width:720px;margin:0 auto;padding:16px 14px 24px;display:flex;flex-direction:column}
-header{text-align:center;padding:10px 0 14px}
-.logo{font-size:26px}
-h1{margin:4px 0 0;font-size:26px}
-.sub{color:var(--muted);margin-top:4px;font-size:14px}
-.status{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
-.badge{font-size:12px;padding:6px 9px;border-radius:999px;background:#142239;color:var(--muted);border:1px solid var(--border)}
-.badge.online{color:var(--green)}
-.walkie{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1;align-items:stretch}
-.talk{
-  border:1px solid var(--border);border-radius:28px;color:var(--text);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  min-height:360px;padding:20px 12px;box-shadow:0 18px 50px rgba(0,0,0,.24);
-  transition:.15s transform,.15s box-shadow,.15s border-color;
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:linear-gradient(180deg,#07101c,#0c1627);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif
 }
+
+body{
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)
+}
+
+button{font:inherit}
+
+.app{
+  min-height:100vh;
+  max-width:720px;
+  margin:0 auto;
+  padding:16px 14px 24px;
+  display:flex;
+  flex-direction:column
+}
+
+header{
+  text-align:center;
+  padding:10px 0 14px
+}
+
+.logo{font-size:26px}
+
+h1{
+  margin:4px 0 0;
+  font-size:26px
+}
+
+.sub{
+  color:var(--muted);
+  margin-top:4px;
+  font-size:14px
+}
+
+.status{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px
+}
+
+.badge{
+  font-size:12px;
+  padding:6px 9px;
+  border-radius:999px;
+  background:#142239;
+  color:var(--muted);
+  border:1px solid var(--border)
+}
+
+.badge.online{color:var(--green)}
+
+.walkie{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  flex:1;
+  align-items:stretch
+}
+
+.talk{
+  border:1px solid var(--border);
+  border-radius:28px;
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:360px;
+  padding:20px 12px;
+  box-shadow:0 18px 50px rgba(0,0,0,.24);
+  transition:.15s transform,.15s box-shadow,.15s border-color
+}
+
 .talk:active{transform:scale(.985)}
-.talk.you{background:linear-gradient(180deg,rgba(90,167,255,.26),rgba(23,44,72,.94))}
-.talk.kelly{background:linear-gradient(180deg,rgba(255,119,173,.24),rgba(57,31,55,.94))}
-.flag{font-size:52px;margin-bottom:12px}
-.name{font-size:30px;font-weight:900}
-.lang{font-size:15px;color:var(--muted);margin-top:4px}
-.mic{font-size:54px;margin:22px 0 8px}
-.action{font-size:17px;font-weight:800}
-.talk.ready{border-color:rgba(255,255,255,.28)}
-.talk.listening{border-color:white;box-shadow:0 0 0 3px rgba(255,255,255,.15),0 18px 50px rgba(0,0,0,.28);animation:pulse 1.1s infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(.985)}}
-.result{margin-top:14px;background:rgba(16,27,46,.95);border:1px solid var(--border);border-radius:22px;padding:15px}
-.resultTop{display:flex;justify-content:space-between;gap:10px;align-items:center}
-.label{font-size:12px;color:var(--muted);font-weight:900}
-.heard{font-size:18px;line-height:1.35;margin-top:9px}
-.translation{font-size:25px;line-height:1.35;font-weight:900;margin-top:7px}
-.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.btn{border:1px solid var(--border);border-radius:13px;padding:10px 12px;background:#16243a;color:var(--text);font-weight:750}
+
+.talk.you{
+  background:linear-gradient(180deg,rgba(90,167,255,.26),rgba(23,44,72,.94))
+}
+
+.talk.kelly{
+  background:linear-gradient(180deg,rgba(255,119,173,.24),rgba(57,31,55,.94))
+}
+
+.flag{
+  font-size:52px;
+  margin-bottom:12px
+}
+
+.name{
+  font-size:30px;
+  font-weight:900
+}
+
+.lang{
+  font-size:15px;
+  color:var(--muted);
+  margin-top:4px
+}
+
+.mic{
+  font-size:54px;
+  margin:22px 0 8px
+}
+
+.action{
+  font-size:17px;
+  font-weight:800
+}
+
+.talk.ready{
+  border-color:rgba(255,255,255,.28)
+}
+
+.talk.listening{
+  border-color:white;
+  box-shadow:0 0 0 3px rgba(255,255,255,.15),0 18px 50px rgba(0,0,0,.28);
+  animation:pulse 1.1s infinite
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(.985)}
+}
+
+.result{
+  margin-top:14px;
+  background:rgba(16,27,46,.95);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:15px
+}
+
+.resultTop{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center
+}
+
+.label{
+  font-size:12px;
+  color:var(--muted);
+  font-weight:900
+}
+
+.heard{
+  font-size:18px;
+  line-height:1.35;
+  margin-top:9px
+}
+
+.translation{
+  font-size:25px;
+  line-height:1.35;
+  font-weight:900;
+  margin-top:7px
+}
+
+.controls{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px
+}
+
+.btn{
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:10px 12px;
+  background:#16243a;
+  color:var(--text);
+  font-weight:750
+}
+
 .btn:disabled{opacity:.45}
-.notice{margin-top:12px;padding:11px 12px;border-radius:14px;background:rgba(90,167,255,.09);border:1px solid rgba(90,167,255,.18);font-size:13px;color:#cee5ff;line-height:1.4}
-.notice.error{background:rgba(255,100,100,.11);border-color:rgba(255,100,100,.24);color:#ffd1d1}
-.smallrow{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:12px}
-.smallbtn{border:1px solid var(--border);background:#132036;color:var(--muted);padding:9px 11px;border-radius:12px;font-weight:700}
+
+.notice{
+  margin-top:12px;
+  padding:11px 12px;
+  border-radius:14px;
+  background:rgba(90,167,255,.09);
+  border:1px solid rgba(90,167,255,.18);
+  font-size:13px;
+  color:#cee5ff;
+  line-height:1.4
+}
+
+.notice.error{
+  background:rgba(255,100,100,.11);
+  border-color:rgba(255,100,100,.24);
+  color:#ffd1d1
+}
+
+.smallrow{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px
+}
+
+.smallbtn{
+  border:1px solid var(--border);
+  background:#132036;
+  color:var(--muted);
+  padding:9px 11px;
+  border-radius:12px;
+  font-weight:700
+}
+
 @media(max-width:560px){
-  .app{padding-left:10px;padding-right:10px}
+  .app{
+    padding-left:10px;
+    padding-right:10px
+  }
+
   .walkie{gap:9px}
-  .talk{min-height:330px;border-radius:24px;padding:14px 8px}
-  .flag{font-size:44px}.name{font-size:25px}.mic{font-size:47px}
+
+  .talk{
+    min-height:330px;
+    border-radius:24px;
+    padding:14px 8px
+  }
+
+  .flag{font-size:44px}
+  .name{font-size:25px}
+  .mic{font-size:47px}
 }
 </style>
 </head>
+
 <body>
+
 <div class="app">
+
 <header>
   <div class="logo">💬</div>
   <h1>Kelly Translate</h1>
   <div class="sub">Tap your side. Speak. Hear the translation.</div>
-  <div class="status"><span id="netBadge" class="badge">Checking…</span><span class="badge">Walkie-Talkie Mode</span></div>
+
+  <div class="status">
+    <span id="netBadge" class="badge">Checking…</span>
+    <span class="badge">Walkie-Talkie Mode</span>
+  </div>
 </header>
 
 <div class="walkie">
+
   <button id="youBtn" class="talk you ready">
     <div class="flag">🇺🇸</div>
     <div class="name">You</div>
@@ -89,23 +296,30 @@ h1{margin:4px 0 0;font-size:26px}
     <div class="mic">🎤</div>
     <div class="action">Toca y Habla</div>
   </button>
+
 </div>
 
 <div class="result">
+
   <div class="resultTop">
     <div id="turnLabel" class="label">READY FOR YOU</div>
     <button id="stopBtn" class="btn" disabled>■ Stop</button>
   </div>
+
   <div id="heard" class="heard">Tap your side and start speaking.</div>
   <div id="translation" class="translation"></div>
+
   <div class="controls">
     <button id="repeatBtn" class="btn" disabled>🔊 Repeat</button>
     <button id="copyBtn" class="btn" disabled>Copy</button>
     <button id="clearBtn" class="btn">Clear</button>
   </div>
+
 </div>
 
-<div id="message" class="notice">After each translation, the other person’s side is highlighted for the next turn.</div>
+<div id="message" class="notice">
+After each translation, the other person’s side is highlighted for the next turn.
+</div>
 
 <div class="smallrow">
   <button id="historyBtn" class="smallbtn">Conversation History</button>
@@ -121,119 +335,679 @@ h1{margin:4px 0 0;font-size:26px}
 
 <script>
 (() => {
-  const $=id=>document.getElementById(id);
-  let recognition=null, recognizing=false, active=null;
-  let lastTranslation='', lastLocale='es-CO', autoSpeak=true;
-  let history=JSON.parse(localStorage.getItem('kt_walkie_history')||'[]');
 
-  const info = who => who==='you'
-    ? {inLang:'en-US',pair:'en|es',outLang:'es-CO',next:'kelly',label:'LISTENING TO YOU'}
-    : {inLang:'es-CO',pair:'es|en',outLang:'en-US',next:'you',label:'ESCUCHANDO A KELLY'};
+  const $ = id => document.getElementById(id);
 
-  function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-  function net(){const on=navigator.onLine,b=$('netBadge');b.textContent=on?'● Online':'● Offline';b.className='badge '+(on?'online':'')}
-  function setReady(who){$('youBtn').classList.toggle('ready',who==='you');$('kellyBtn').classList.toggle('ready',who==='kelly')}
-  function setListening(who,on){$('youBtn').classList.toggle('listening',on&&who==='you');$('kellyBtn').classList.toggle('listening',on&&who==='kelly');$('stopBtn').disabled=!on}
-  function msg(text,error=false){$('message').textContent=text;$('message').className='notice'+(error?' error':'')}
+  let recognition = null;
+  let recognizing = false;
+  let active = null;
+  let finishing = false;
+
+  let lastHeardText = '';
+  let lastTranslation = '';
+  let lastLocale = 'es-CO';
+  let autoSpeak = true;
+
+  let history = JSON.parse(
+    localStorage.getItem('kt_walkie_history') || '[]'
+  );
+
+  const info = who => who === 'you'
+    ? {
+        inLang:'en-US',
+        pair:'en|es',
+        outLang:'es-CO',
+        next:'kelly',
+        label:'LISTENING TO YOU'
+      }
+    : {
+        inLang:'es-CO',
+        pair:'es|en',
+        outLang:'en-US',
+        next:'you',
+        label:'ESCUCHANDO A KELLY'
+      };
+
+  function esc(s){
+    return String(s).replace(
+      /[&<>"']/g,
+      c => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[c])
+    );
+  }
+
+  function net(){
+    const on = navigator.onLine;
+    const b = $('netBadge');
+
+    b.textContent = on ? '● Online' : '● Offline';
+    b.className = 'badge ' + (on ? 'online' : '');
+  }
+
+  function setReady(who){
+    $('youBtn').classList.toggle('ready', who === 'you');
+    $('kellyBtn').classList.toggle('ready', who === 'kelly');
+  }
+
+  function setListening(who,on){
+    $('youBtn').classList.toggle(
+      'listening',
+      on && who === 'you'
+    );
+
+    $('kellyBtn').classList.toggle(
+      'listening',
+      on && who === 'kelly'
+    );
+
+    $('stopBtn').disabled = !on;
+  }
+
+  function msg(text,error=false){
+    $('message').textContent = text;
+    $('message').className =
+      'notice' + (error ? ' error' : '');
+  }
+
+  async function requestMicrophone(){
+    if(
+      !navigator.mediaDevices ||
+      !navigator.mediaDevices.getUserMedia
+    ){
+      return true;
+    }
+
+    try{
+      const stream =
+        await navigator.mediaDevices.getUserMedia({
+          audio:true
+        });
+
+      stream.getTracks().forEach(track => track.stop());
+
+      return true;
+
+    }catch(err){
+
+      if(
+        err.name === 'NotAllowedError' ||
+        err.name === 'PermissionDeniedError'
+      ){
+        msg(
+          'Microphone access is blocked. On iPhone, open Settings → Safari → Microphone and allow access, then try again.',
+          true
+        );
+      }else{
+        msg(
+          'I could not access the microphone. Check your iPhone microphone permission and try again.',
+          true
+        );
+      }
+
+      return false;
+    }
+  }
 
   async function translateText(text,pair){
-    if(!navigator.onLine) throw new Error('You’re offline. New translations need internet.');
-    const r=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(pair)}`,{headers:{Accept:'application/json'}});
-    if(!r.ok) throw new Error('Translation service error.');
-    const d=await r.json();
-    if(!d?.responseData?.translatedText) throw new Error('No translation returned.');
+
+    if(!navigator.onLine){
+      throw new Error(
+        'You’re offline. New translations need internet.'
+      );
+    }
+
+    const r = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(pair)}`,
+      {
+        headers:{
+          Accept:'application/json'
+        }
+      }
+    );
+
+    if(!r.ok){
+      throw new Error(
+        'Translation service error. Please try again.'
+      );
+    }
+
+    const d = await r.json();
+
+    if(!d?.responseData?.translatedText){
+      throw new Error(
+        'No translation was returned. Please try again.'
+      );
+    }
+
     return d.responseData.translatedText;
   }
 
   function speak(text,locale,cb){
-    if(!('speechSynthesis' in window)){cb?.();return}
+
+    if(!('speechSynthesis' in window)){
+      cb?.();
+      return;
+    }
+
     speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(text);u.lang=locale;u.rate=.92;u.onend=()=>cb?.();u.onerror=()=>cb?.();speechSynthesis.speak(u)
+
+    const u = new SpeechSynthesisUtterance(text);
+
+    u.lang = locale;
+    u.rate = .92;
+
+    u.onend = () => cb?.();
+    u.onerror = () => cb?.();
+
+    speechSynthesis.speak(u);
+  }
+
+  function handleRecognitionError(event){
+
+    const error = event?.error || 'unknown';
+
+    setListening(active,false);
+    recognizing = false;
+
+    if(error === 'not-allowed'){
+      msg(
+        'Microphone or speech recognition permission is blocked. Allow microphone access in Safari settings and try again.',
+        true
+      );
+
+    }else if(error === 'audio-capture'){
+      msg(
+        'Your microphone could not be accessed. Check iPhone microphone permissions and try again.',
+        true
+      );
+
+    }else if(error === 'network'){
+      msg(
+        'Speech recognition could not connect. Check your internet connection and try again.',
+        true
+      );
+
+    }else if(error === 'service-not-allowed'){
+      msg(
+        'Safari speech recognition is currently unavailable. Try closing and reopening Safari.',
+        true
+      );
+
+    }else if(error === 'no-speech'){
+
+      if(lastHeardText.trim()){
+        finish(lastHeardText.trim());
+        return;
+      }
+
+      msg(
+        'I did not detect speech. Tap your side, wait for “Listening…”, then speak normally.',
+        true
+      );
+
+    }else if(error === 'aborted'){
+
+      if(lastHeardText.trim()){
+        finish(lastHeardText.trim());
+        return;
+      }
+
+    }else{
+
+      if(lastHeardText.trim()){
+        finish(lastHeardText.trim());
+        return;
+      }
+
+      msg(
+        'Speech recognition stopped before I heard anything. Tap your side and try again.',
+        true
+      );
+    }
+
+    active = null;
   }
 
   function initSpeech(){
-    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+
+    const SR =
+      window.SpeechRecognition ||
+      window.webkitSpeechRecognition;
+
     if(!SR){
-      $('youBtn').disabled=$('kellyBtn').disabled=true;
-      msg('Voice recognition is unavailable in this browser.',true);
+
+      $('youBtn').disabled = true;
+      $('kellyBtn').disabled = true;
+
+      msg(
+        'Voice recognition is unavailable in this browser. Open Kelly Translate in Safari.',
+        true
+      );
+
       return;
     }
-    recognition=new SR();recognition.interimResults=true;recognition.continuous=false;recognition.maxAlternatives=1;
 
-    recognition.onresult=e=>{
-      let text='',isFinal=false;
-      for(let i=e.resultIndex;i<e.results.length;i++){text+=e.results[i][0].transcript;if(e.results[i].isFinal)isFinal=true}
-      $('heard').textContent=text||'Listening…';
-      if(isFinal&&text.trim()) finish(text.trim());
+    recognition = new SR();
+
+    recognition.interimResults = true;
+    recognition.continuous = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onstart = () => {
+      recognizing = true;
+
+      if(active){
+        setListening(active,true);
+      }
     };
 
-    recognition.onerror=()=>{
-      setListening(active,false);recognizing=false;
-      msg('I couldn’t hear that clearly. Tap your side and try again.',true);
-      active=null;
+    recognition.onaudiostart = () => {
+      msg('Microphone active — speak now.');
     };
-    recognition.onend=()=>{recognizing=false;setListening(active,false)};
+
+    recognition.onspeechstart = () => {
+      msg('I hear you…');
+    };
+
+    recognition.onresult = event => {
+
+      let combined = '';
+      let hasFinal = false;
+
+      for(
+        let i = event.resultIndex;
+        i < event.results.length;
+        i++
+      ){
+
+        const transcript =
+          event.results[i][0]?.transcript || '';
+
+        combined += transcript;
+
+        if(event.results[i].isFinal){
+          hasFinal = true;
+        }
+      }
+
+      combined = combined.trim();
+
+      if(combined){
+        lastHeardText = combined;
+        $('heard').textContent = combined;
+      }
+
+      if(hasFinal && lastHeardText){
+        finish(lastHeardText);
+      }
+    };
+
+    recognition.onerror = handleRecognitionError;
+
+    recognition.onend = () => {
+
+      recognizing = false;
+      setListening(active,false);
+
+      if(
+        active &&
+        !finishing &&
+        lastHeardText.trim()
+      ){
+        finish(lastHeardText.trim());
+      }
+    };
   }
 
-  function start(who){
-    if(!recognition)return;
-    if(recognizing)stop();
-    active=who;const i=info(who);
-    recognition.lang=i.inLang;
-    $('turnLabel').textContent=i.label;
-    $('heard').textContent=who==='you'?'Speak now…':'Habla ahora…';
-    $('translation').textContent='';
-    msg('Listening…');
-    try{recognition.start();recognizing=true;setListening(who,true);setReady(who)}catch{msg('Could not start the microphone. Tap again.',true)}
+  async function start(who){
+
+    if(!recognition){
+      return;
+    }
+
+    if(finishing){
+      return;
+    }
+
+    if(recognizing){
+      stop();
+    }
+
+    const allowed = await requestMicrophone();
+
+    if(!allowed){
+      return;
+    }
+
+    active = who;
+    lastHeardText = '';
+
+    const i = info(who);
+
+    recognition.lang = i.inLang;
+
+    $('turnLabel').textContent = i.label;
+
+    $('heard').textContent =
+      who === 'you'
+        ? 'Speak now…'
+        : 'Habla ahora…';
+
+    $('translation').textContent = '';
+
+    msg(
+      who === 'you'
+        ? 'Listening for English…'
+        : 'Escuchando español…'
+    );
+
+    setReady(who);
+
+    try{
+
+      recognition.start();
+
+    }catch(err){
+
+      recognizing = false;
+      setListening(who,false);
+
+      msg(
+        'The microphone could not start. Wait one second and tap again.',
+        true
+      );
+
+      active = null;
+    }
   }
 
   function stop(){
-    if(recognition&&recognizing){try{recognition.stop()}catch{}}
-    recognizing=false;setListening(active,false);$('stopBtn').disabled=true
+
+    if(recognition && recognizing){
+      try{
+        recognition.stop();
+      }catch{}
+    }
+
+    recognizing = false;
+    setListening(active,false);
+
+    $('stopBtn').disabled = true;
+
+    if(
+      active &&
+      lastHeardText.trim() &&
+      !finishing
+    ){
+      finish(lastHeardText.trim());
+    }
   }
 
   async function finish(text){
-    if(!active)return;
-    const who=active,i=info(who);stop();
-    $('turnLabel').textContent='TRANSLATING…';
+
+    if(!active || finishing){
+      return;
+    }
+
+    text = String(text || '').trim();
+
+    if(!text){
+      msg(
+        'I did not hear any words. Tap your side and try again.',
+        true
+      );
+      return;
+    }
+
+    finishing = true;
+
+    const who = active;
+    const i = info(who);
+
     try{
-      const t=await translateText(text,i.pair);
-      lastTranslation=t;lastLocale=i.outLang;
-      $('heard').textContent=text;$('translation').textContent=t;
-      $('repeatBtn').disabled=false;$('copyBtn').disabled=false;
-      history.push({who,original:text,translated:t,at:Date.now()});history=history.slice(-40);localStorage.setItem('kt_walkie_history',JSON.stringify(history));renderHistory();
+      if(recognition && recognizing){
+        try{
+          recognition.stop();
+        }catch{}
+      }
+
+      recognizing = false;
+      setListening(who,false);
+
+      $('turnLabel').textContent = 'TRANSLATING…';
+      $('heard').textContent = text;
+
+      const t = await translateText(
+        text,
+        i.pair
+      );
+
+      lastTranslation = t;
+      lastLocale = i.outLang;
+
+      $('translation').textContent = t;
+
+      $('repeatBtn').disabled = false;
+      $('copyBtn').disabled = false;
+
+      history.push({
+        who,
+        original:text,
+        translated:t,
+        at:Date.now()
+      });
+
+      history = history.slice(-40);
+
+      localStorage.setItem(
+        'kt_walkie_history',
+        JSON.stringify(history)
+      );
+
+      renderHistory();
+
       setReady(i.next);
-      const nextLabel=i.next==='kelly'?'KELLY’S TURN':'YOUR TURN';
-      if(autoSpeak)speak(t,i.outLang,()=>{$('turnLabel').textContent=nextLabel;msg(i.next==='kelly'?'Kelly, tap your side and speak.':'Tap your side and speak.')});
-      else{$('turnLabel').textContent=nextLabel;msg(i.next==='kelly'?'Kelly, tap your side and speak.':'Tap your side and speak.')}
-    }catch(e){msg(e.message||'Translation failed.',true);$('turnLabel').textContent='TRY AGAIN'}
-    finally{active=null}
+
+      const nextLabel =
+        i.next === 'kelly'
+          ? 'KELLY’S TURN'
+          : 'YOUR TURN';
+
+      const nextMessage =
+        i.next === 'kelly'
+          ? 'Kelly, tap your side and speak.'
+          : 'Tap your side and speak.';
+
+      if(autoSpeak){
+
+        speak(
+          t,
+          i.outLang,
+          () => {
+            $('turnLabel').textContent =
+              nextLabel;
+
+            msg(nextMessage);
+          }
+        );
+
+      }else{
+
+        $('turnLabel').textContent =
+          nextLabel;
+
+        msg(nextMessage);
+      }
+
+    }catch(e){
+
+      msg(
+        e.message ||
+        'Translation failed. Please try again.',
+        true
+      );
+
+      $('turnLabel').textContent =
+        'TRY AGAIN';
+
+      setReady(who);
+
+    }finally{
+
+      active = null;
+      finishing = false;
+      lastHeardText = '';
+    }
   }
 
   function renderHistory(){
-    const box=$('history');
-    if(!history.length){box.innerHTML='<div style="color:#9daec6;margin-top:10px">No conversation yet.</div>';return}
-    box.innerHTML=history.slice().reverse().map(x=>`
-      <div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)">
-        <div style="font-size:12px;color:#9daec6">${x.who==='you'?'You → Kelly':'Kelly → You'}</div>
-        <div style="margin-top:3px">${esc(x.original)}</div>
-        <div style="font-weight:800;margin-top:4px">${esc(x.translated)}</div>
-      </div>`).join('');
+
+    const box = $('history');
+
+    if(!history.length){
+
+      box.innerHTML =
+        '<div style="color:#9daec6;margin-top:10px">No conversation yet.</div>';
+
+      return;
+    }
+
+    box.innerHTML =
+      history
+        .slice()
+        .reverse()
+        .map(x => `
+          <div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+            <div style="font-size:12px;color:#9daec6">
+              ${x.who === 'you'
+                ? 'You → Kelly'
+                : 'Kelly → You'}
+            </div>
+
+            <div style="margin-top:3px">
+              ${esc(x.original)}
+            </div>
+
+            <div style="font-weight:800;margin-top:4px">
+              ${esc(x.translated)}
+            </div>
+          </div>
+        `)
+        .join('');
   }
 
-  $('youBtn').onclick=()=>start('you');
-  $('kellyBtn').onclick=()=>start('kelly');
-  $('stopBtn').onclick=stop;
-  $('repeatBtn').onclick=()=>speak(lastTranslation,lastLocale);
-  $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(lastTranslation);msg('Translation copied.')}catch{msg('Press and hold the translation to copy it.',true)}};
-  $('clearBtn').onclick=()=>{$('heard').textContent='Tap your side and start speaking.';$('translation').textContent='';$('turnLabel').textContent='READY FOR YOU';$('repeatBtn').disabled=$('copyBtn').disabled=true;setReady('you');msg('Ready.')};
-  $('historyBtn').onclick=()=>{const p=$('historyPanel');p.style.display=p.style.display==='none'?'block':'none'};
-  $('autoSpeakBtn').onclick=()=>{autoSpeak=!autoSpeak;$('autoSpeakBtn').textContent='Auto Speak: '+(autoSpeak?'ON':'OFF')};
+  $('youBtn').onclick =
+    () => start('you');
 
-  window.addEventListener('online',net);window.addEventListener('offline',net);
-  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
-  net();initSpeech();renderHistory();setReady('you');
+  $('kellyBtn').onclick =
+    () => start('kelly');
+
+  $('stopBtn').onclick =
+    stop;
+
+  $('repeatBtn').onclick =
+    () => speak(
+      lastTranslation,
+      lastLocale
+    );
+
+  $('copyBtn').onclick =
+    async () => {
+
+      try{
+
+        await navigator.clipboard.writeText(
+          lastTranslation
+        );
+
+        msg('Translation copied.');
+
+      }catch{
+
+        msg(
+          'Press and hold the translation to copy it.',
+          true
+        );
+      }
+    };
+
+  $('clearBtn').onclick =
+    () => {
+
+      if(recognizing){
+        stop();
+      }
+
+      active = null;
+      finishing = false;
+      lastHeardText = '';
+
+      $('heard').textContent =
+        'Tap your side and start speaking.';
+
+      $('translation').textContent = '';
+
+      $('turnLabel').textContent =
+        'READY FOR YOU';
+
+      $('repeatBtn').disabled = true;
+      $('copyBtn').disabled = true;
+
+      setReady('you');
+
+      msg('Ready.');
+    };
+
+  $('historyBtn').onclick =
+    () => {
+
+      const p = $('historyPanel');
+
+      p.style.display =
+        p.style.display === 'none'
+          ? 'block'
+          : 'none';
+    };
+
+  $('autoSpeakBtn').onclick =
+    () => {
+
+      autoSpeak = !autoSpeak;
+
+      $('autoSpeakBtn').textContent =
+        'Auto Speak: ' +
+        (autoSpeak ? 'ON' : 'OFF');
+    };
+
+  window.addEventListener(
+    'online',
+    net
+  );
+
+  window.addEventListener(
+    'offline',
+    net
+  );
+
+  if('serviceWorker' in navigator){
+
+    navigator.serviceWorker
+      .register('./sw.js')
+      .catch(() => {});
+  }
+
+  net();
+  initSpeech();
+  renderHistory();
+  setReady('you');
+
 })();
 </script>
+
 </body>
 </html>
